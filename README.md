@@ -20,3 +20,6 @@ All features are working except the various fill options and network file suppor
 The program supports JPG, PNG, GIF, and BMP files because Windows GDI handles these natively. Even though I'm not personally a fan of the WEBP format, I will probably add this at some point.
 
 Pull-requests are welcome.
+
+![image](https://github.com/user-attachments/assets/866795f4-3017-44e7-90bf-2a09393272d1)
+

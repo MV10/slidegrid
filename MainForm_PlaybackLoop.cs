@@ -178,7 +178,7 @@ public partial class MainForm
 
             // add indexes to the playlist according to the sequence length 
             var index = random.Next(target.Count);
-            var countdown = seqlen;
+            var countdown = random.Next(1, seqlen + 1);
             while(countdown > 0 && index < target.Count)
             {
                 var i = target[index] * multiplier;

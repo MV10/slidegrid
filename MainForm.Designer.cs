@@ -510,9 +510,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(429, 343);
             label8.Name = "label8";
-            label8.Size = new Size(95, 15);
+            label8.Size = new Size(128, 15);
             label8.TabIndex = 42;
-            label8.Text = "Sequence length";
+            label8.Text = "Sequence length (max)";
             // 
             // txtLength
             // 

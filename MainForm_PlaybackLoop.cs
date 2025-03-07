@@ -194,6 +194,12 @@ public partial class MainForm
                 target.RemoveAt(index);
                 countdown--;
             }
+
+            // highlights should never "run out"
+            if(Highlights.Count > 0 && highlightIDs.Count == 0)
+            {
+                highlightIDs = Enumerable.Range(0, Highlights.Count).ToList();
+            }
         }
     }
 

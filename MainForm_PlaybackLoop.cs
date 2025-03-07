@@ -18,7 +18,6 @@ public partial class MainForm
     private List<ImageData> Highlights;
     private BusyDialog busy;
     private Random random = new();
-    private List<int> PlaybackSequence;
     private int activeGrid = 0;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,15 +53,9 @@ public partial class MainForm
 
     internal void EndPlayback()
     {
-        foreach (var g in Grids) 
-        {
-            g.ReleaseSlide();
-        }
-
+        foreach (var g in Grids) g.ReleaseSlide();
         Content = null;
         Highlights = null;
-        PlaybackSequence = null;
-
         Visible = true;
     }
 
@@ -89,7 +82,7 @@ public partial class MainForm
         // this actually begins playback (managed within SlideForm)
         for (int i = 0; i < Grids.Count; i++)
         {
-            Grids[i].InitSlide(i, this, Content, Highlights, PlaybackSequence);
+            Grids[i].InitSlide(i, this, Content, Highlights);
         }
         Grids[0].Slide.Focus();
     }
@@ -121,7 +114,7 @@ public partial class MainForm
         }
 
         busy.SetLabel("Sequencing...");
-        SequenceImageData();
+        foreach (var g in Grids) g.PlaybackSequence = GetPlaybackSequence();
     }
 
     private void SortImageData(List<ImageData> dataList)
@@ -141,8 +134,9 @@ public partial class MainForm
         }
     }
 
-    private void SequenceImageData()
+    private List<int> GetPlaybackSequence()
     {
+        // Each grid stores its own separate playback sequence which the slide references.
         // The entire playlist series is pre-determined. The PlaybackSequence list of
         // integers identifies the Content index (positive) or Highlights index (negative)
         // to be played. This way, it is possible to manually step forwards and backwards
@@ -150,6 +144,8 @@ public partial class MainForm
         // and highlight-only display modes. Because there is no "negative zero" which would
         // make it impossible to reference Highlights[0] in this scheme, int.MinValue is used
         // to represent that special case.
+
+        List<int> PlaybackSequence;
 
         var seqlen = 1;
         if ((PlaybackRandomizeMode)cmbRandomize.SelectedIndex != PlaybackRandomizeMode.Shuffle)
@@ -163,7 +159,7 @@ public partial class MainForm
 
         var highlightFreq = int.Parse(txtFreq.Text);
 
-        while (contentIDs.Count > 0 || highlightIDs.Count > 0)
+        while (contentIDs.Count > 0)
         {
             List<int> target;
             int multiplier = 1;
@@ -201,6 +197,8 @@ public partial class MainForm
                 highlightIDs = Enumerable.Range(0, Highlights.Count).ToList();
             }
         }
+
+        return PlaybackSequence;
     }
 
     private void CreateImageData(List<ImageData> dataList, ListBox pathnameList)

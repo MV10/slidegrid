@@ -16,19 +16,21 @@ internal class Grid
     // playback mode (mostly pass-through, SlideForm does all the playback work)
 
     internal SlideForm Slide;
+    internal List<int> PlaybackSequence;
 
-    public void InitSlide(int gridNumber, MainForm main, List<ImageData> content, List<ImageData> highlights, List<int> playbackSequence)
+    public void InitSlide(int gridNumber, MainForm main, List<ImageData> content, List<ImageData> highlights)
     {
         Slide = new();
         Slide.StartPosition = FormStartPosition.Manual;
         Slide.Location = new Point(Dimensions.X, Dimensions.Y);
         Slide.Size = new Size(Dimensions.Width, Dimensions.Height);
-        Slide.InitializeForm(gridNumber, main, this, content, highlights, playbackSequence);
+        Slide.InitializeForm(gridNumber, main, this, content, highlights, PlaybackSequence);
         Slide.Show();
     }
 
     public void ReleaseSlide()
     {
+        PlaybackSequence = null;
         Slide?.Dispose();
         Slide = null;
     }

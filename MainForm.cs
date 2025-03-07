@@ -17,6 +17,18 @@ namespace slidegrid
             lstGrid.DisplayMember = "ListBoxDisplay";
             lstGrid.ValueMember = "ListBoxIdentity";
             ResetForm();
+
+            if(Program.args.Length == 1 && File.Exists(Program.args[0]))
+            {
+                if (LoadFile(Program.args[0]))
+                {
+                    lblPathname.Text = Program.args[0];
+                }
+                else
+                {
+                    ResetForm();
+                }
+            }
         }
 
 

@@ -1,15 +1,15 @@
+using System.Runtime.CompilerServices;
+
 namespace slidegrid
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        internal static string[] args;
+
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            Program.args = args;
             ApplicationConfiguration.Initialize();
             var form = new MainForm();
             Application.Run(form);

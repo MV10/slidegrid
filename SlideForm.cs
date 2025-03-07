@@ -93,8 +93,8 @@ public partial class SlideForm : Form
 
     private void ResetTimer()
     {
-        timer.Stop();
-        if (Advance == GridAdvanceMode.Automatic) timer.Start();
+        timer.Enabled = false;
+        if (Advance == GridAdvanceMode.Automatic) timer.Enabled = true;
     }
 
     private void timer_Tick(object sender, EventArgs e)
@@ -146,22 +146,6 @@ public partial class SlideForm : Form
             return;
         }
 
-        // SPC auto/manual toggle
-        if (e.KeyCode == Keys.Space)
-        {
-            if (Advance == GridAdvanceMode.Manual)
-            {
-                timer.Start();
-                Advance = GridAdvanceMode.Automatic;
-            }
-            else
-            {
-                timer.Stop();
-                Advance = GridAdvanceMode.Automatic;
-            }
-            return;
-        }
-
         // everything else is potentially a broadcast keystroke
         Main.BroadcastKeyUp(sender, e);
     }
@@ -206,6 +190,14 @@ public partial class SlideForm : Form
             if (Highlights.Count == 0) return;
             highlightsOnly = !highlightsOnly;
             ShowSlide();
+            return;
+        }
+
+        // SPC auto/manual toggle
+        if (e.KeyCode == Keys.Space)
+        {
+            Advance = (Advance == GridAdvanceMode.Manual) ? GridAdvanceMode.Automatic : GridAdvanceMode.Manual;
+            ResetTimer();
             return;
         }
     }

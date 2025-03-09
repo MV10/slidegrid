@@ -31,8 +31,12 @@ partial class SlideForm
         components = new System.ComponentModel.Container();
         lblInfo = new Label();
         picSlide = new PictureBox();
+        picPrev = new PictureBox();
+        picNext = new PictureBox();
         timer = new System.Windows.Forms.Timer(components);
         ((System.ComponentModel.ISupportInitialize)picSlide).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)picPrev).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)picNext).BeginInit();
         SuspendLayout();
         // 
         // lblInfo
@@ -60,12 +64,32 @@ partial class SlideForm
         // 
         timer.Tick += timer_Tick;
         // 
+        // picPrev
+        // 
+        picPrev.Location = new Point(104, 166);
+        picPrev.Name = "picPrev";
+        picPrev.Size = new Size(100, 50);
+        picPrev.SizeMode = PictureBoxSizeMode.Zoom;
+        picPrev.TabIndex = 2;
+        picPrev.TabStop = false;
+        // 
+        // picNext
+        // 
+        picNext.Location = new Point(104, 222);
+        picNext.Name = "picNext";
+        picNext.Size = new Size(100, 50);
+        picNext.SizeMode = PictureBoxSizeMode.Zoom;
+        picNext.TabIndex = 3;
+        picNext.TabStop = false;
+        // 
         // SlideForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(800, 450);
+        Controls.Add(picNext);
+        Controls.Add(picPrev);
         Controls.Add(picSlide);
         Controls.Add(lblInfo);
         FormBorderStyle = FormBorderStyle.None;
@@ -75,6 +99,8 @@ partial class SlideForm
         StartPosition = FormStartPosition.Manual;
         KeyUp += SlideForm_KeyUp;
         ((System.ComponentModel.ISupportInitialize)picSlide).EndInit();
+        ((System.ComponentModel.ISupportInitialize)picPrev).EndInit();
+        ((System.ComponentModel.ISupportInitialize)picNext).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -83,5 +109,7 @@ partial class SlideForm
 
     private Label lblInfo;
     private PictureBox picSlide;
+    private PictureBox picPrev;
+    private PictureBox picNext;
     private System.Windows.Forms.Timer timer;
 }

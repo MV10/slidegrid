@@ -36,6 +36,9 @@ public static class Extensions
         return fileName.EndsWith('*');
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
     private static void ValidateKeyPressNumeric(TextBox txt, KeyPressEventArgs e, bool AllowDecimal = true, bool AllowNegative = false)
     {
         bool isValid = Char.IsNumber(e.KeyChar);

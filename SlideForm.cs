@@ -114,6 +114,7 @@ public partial class SlideForm : Form
         WrapIndex(ref index);
 
         // if advance = 0 (which means "show current"), auto-advance forward to a highlight
+        if (advance == 0) advance = +1;
         while (highlightsOnly && PlaybackSequence[index] > -1)
         {
             index += advance;

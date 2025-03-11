@@ -102,7 +102,7 @@ public partial class SlideForm : Form
         }
 
         lblInfo.Visible = showFileInfo;
-        lblInfo.Text = picSlide.ImageLocation;
+        lblInfo.Text = Slide.Pathname;
     }
 
     private void AdvanceIndex(ref int index, int advance)

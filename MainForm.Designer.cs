@@ -489,7 +489,7 @@
             // label7
             // 
             label7.Font = new Font("Consolas", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(573, 319);
+            label7.Location = new Point(598, 319);
             label7.Name = "label7";
             label7.Size = new Size(190, 131);
             label7.TabIndex = 41;
@@ -510,9 +510,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(429, 343);
             label8.Name = "label8";
-            label8.Size = new Size(128, 15);
+            label8.Size = new Size(144, 15);
             label8.TabIndex = 42;
-            label8.Text = "Sequence length (max)";
+            label8.Text = "Max sequence length (+2)";
             // 
             // txtLength
             // 

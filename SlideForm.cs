@@ -107,15 +107,21 @@ public partial class SlideForm : Form
 
     private void AdvanceIndex(ref int index, int advance)
     {
-        // when highlights mode is active, if the current index is not already a highlight, the
-        // index can change even when advance is 0 if highlights exist (index will skip forward)
-
-        index += advance;
-        WrapIndex(ref index);
-
-        // if advance = 0 (which means "show current"), auto-advance forward to a highlight
-        if (advance == 0) advance = +1;
-        while (highlightsOnly && PlaybackSequence[index] > -1)
+        // when highlights-only mode is active, the current index is randomly selected,
+        // then it skips forward until it finds a highlight entry; note this means you can't
+        // manually move forward and backward through the highlights
+        if(highlightsOnly)
+        {
+            var nodupe = index;
+            index = random.Next(PlaybackSequence.Count);
+            do
+            {
+                index += 1;
+                WrapIndex(ref index);
+            } while (PlaybackSequence[index] > -1 && index != nodupe);
+        }
+        // otherwise we're just incrementing forward or backwards (or not at all)
+        else
         {
             index += advance;
             WrapIndex(ref index);

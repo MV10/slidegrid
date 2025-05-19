@@ -63,13 +63,11 @@ public partial class FilePickerDialog : Form
         var files = new List<FileInfo>();
         foreach (var file in new DirectoryInfo(path).EnumerateFiles())
         {
-            if ((file.Attributes & FileAttributes.Hidden) == 0 && (file.Attributes & FileAttributes.System) == 0)
+            if ((file.Attributes & FileAttributes.Hidden) == 0 
+                && (file.Attributes & FileAttributes.System) == 0
+                && file.Name.IsSupportedFileType())
             {
-                var ext = Path.GetExtension(file.Name);
-                if(".jpg|.jpeg|.png|.bmp".Contains(ext, StringComparison.InvariantCultureIgnoreCase))
-                {
                     files.Add(file);
-                }
             }
         }
         foreach (var file in files)

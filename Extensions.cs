@@ -36,6 +36,11 @@ public static class Extensions
         return fileName.EndsWith('*');
     }
 
+    /// <summary>
+    /// Determines if the pathname represents a supported image file type.
+    /// </summary>
+    public static bool IsSupportedFileType(this string pathname)
+        => ".jpg|.jpeg|.png|.bmp".Contains(Path.GetExtension(pathname), StringComparison.InvariantCultureIgnoreCase);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 

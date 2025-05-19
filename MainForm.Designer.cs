@@ -258,6 +258,7 @@
             // 
             // lstContent
             // 
+            lstContent.AllowDrop = true;
             lstContent.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstContent.FormattingEnabled = true;
             lstContent.ItemHeight = 14;
@@ -266,6 +267,8 @@
             lstContent.Size = new Size(190, 130);
             lstContent.TabIndex = 14;
             lstContent.SelectedIndexChanged += lstContent_SelectedIndexChanged;
+            lstContent.DragDrop += lstContent_DragDrop;
+            lstContent.DragEnter += lstContent_DragEnter;
             // 
             // lblContent
             // 
@@ -322,6 +325,7 @@
             // 
             // lstHighlight
             // 
+            lstHighlight.AllowDrop = true;
             lstHighlight.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstHighlight.FormattingEnabled = true;
             lstHighlight.ItemHeight = 14;
@@ -330,6 +334,8 @@
             lstHighlight.Size = new Size(190, 130);
             lstHighlight.TabIndex = 20;
             lstHighlight.SelectedIndexChanged += lstHighlight_SelectedIndexChanged;
+            lstHighlight.DragDrop += lstHighlight_DragDrop;
+            lstHighlight.DragEnter += lstHighlight_DragEnter;
             // 
             // lblHilight
             // 

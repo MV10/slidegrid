@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.IO;
 
 namespace slidegrid
 {
@@ -18,7 +19,7 @@ namespace slidegrid
             lstGrid.ValueMember = "ListBoxIdentity";
             ResetForm();
 
-            if(Program.args.Length == 1 && File.Exists(Program.args[0]))
+            if (Program.args.Length == 1 && File.Exists(Program.args[0]))
             {
                 if (LoadFile(Program.args[0]))
                 {
@@ -275,6 +276,23 @@ namespace slidegrid
             picPreview.ImageLocation = item;
         }
 
+        private void lstContent_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lstContent_DragDrop(object sender, DragEventArgs e)
+        {
+            HandleDragDrop(lstContent, e);
+        }
+
         private void btnContentAdd_Click(object sender, EventArgs e)
         {
             FilePickerShow("Add Content", AddItemToContentList);
@@ -327,6 +345,23 @@ namespace slidegrid
                 return;
             }
             picPreview.ImageLocation = item;
+        }
+
+        private void lstHighlight_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lstHighlight_DragDrop(object sender, DragEventArgs e)
+        {
+            HandleDragDrop(lstHighlight, e);
         }
 
         private void btnHilightAdd_Click(object sender, EventArgs e)
@@ -461,6 +496,97 @@ namespace slidegrid
 
             txtFreqBeforeEdit = 5;
             txtFreq.Text = "5";
+        }
+
+        private void HandleDragDrop(ListBox target, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
+            var items = ((string[])e.Data.GetData(DataFormats.FileDrop)).ToList();
+            if (items?.Count == 0) return;
+
+            var someItemsInvalid = false;
+            var files = new List<string>();
+            var dirs = new List<string>();
+
+            foreach(var i in items)
+            {
+                if (File.Exists(i))
+                {
+                    files.Add(i);
+                }
+                else
+                {
+                    if(Directory.Exists(i))
+                    {
+                        dirs.Add(i);
+                    }
+                    else
+                    {
+                        someItemsInvalid = true;
+                    }
+                }
+            }
+
+            if(files.Count == 0 && dirs.Count == 0)
+            {
+                MessageBox.Show("Content ignored. No supported formats or directories were dropped.");
+                return;
+            }
+
+            if(dirs.Count > 0)
+            {
+                var action = MessageBox.Show("Yes: Add directories with wildcard\nNo: Add individual files in the directories", "Drag/Drop Directories", MessageBoxButtons.YesNoCancel);
+                if (action == DialogResult.Cancel) return;
+                if (action == DialogResult.No)
+                {
+                    foreach(var d in dirs)
+                    {
+                        var path = d + "\\";
+                        foreach (var file in new DirectoryInfo(path).EnumerateFiles())
+                        {
+                            if ((file.Attributes & FileAttributes.Hidden) == 0
+                                && (file.Attributes & FileAttributes.System) == 0
+                                && file.Name.IsSupportedFileType())
+                            {
+                                files.Add(file.FullName);
+                            }
+                        }
+                    }
+                }
+                if(action == DialogResult.Yes)
+                {
+                    foreach(var d in dirs)
+                    {
+                        target.Items.Add(d + "\\*");
+                    }
+                }
+                dirs.Clear();
+            }
+
+            if(files.Count > 0)
+            {
+                foreach(var f in files)
+                {
+                    if(File.Exists(f))
+                    {
+                        var attr = File.GetAttributes(f);
+                        if(attr.HasFlag(FileAttributes.Hidden) 
+                            || attr.HasFlag(FileAttributes.System)
+                            || !f.IsSupportedFileType())
+
+                        {
+                            someItemsInvalid = true;
+                            continue;
+                        }
+                        target.Items.Add(f);
+                    }
+                }
+            }
+
+            if(someItemsInvalid)
+            {
+                MessageBox.Show("Files with unsupported formats or attributes were ignored.");
+            }
         }
     }
 }

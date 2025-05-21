@@ -85,7 +85,7 @@
             // 
             // btnPlay
             // 
-            btnPlay.Location = new Point(495, 34);
+            btnPlay.Location = new Point(478, 24);
             btnPlay.Name = "btnPlay";
             btnPlay.Size = new Size(75, 23);
             btnPlay.TabIndex = 0;
@@ -142,11 +142,11 @@
             // 
             // btnEditor
             // 
-            btnEditor.Location = new Point(352, 50);
+            btnEditor.Location = new Point(640, 251);
             btnEditor.Name = "btnEditor";
             btnEditor.Size = new Size(75, 23);
             btnEditor.TabIndex = 6;
-            btnEditor.Text = "Editor...";
+            btnEditor.Text = "Open...";
             btnEditor.UseVisualStyleBackColor = true;
             btnEditor.Click += btnEditor_Click;
             // 
@@ -350,6 +350,7 @@
             // 
             // picPreview
             // 
+            picPreview.BorderStyle = BorderStyle.FixedSingle;
             picPreview.Location = new Point(640, 115);
             picPreview.Name = "picPreview";
             picPreview.Size = new Size(148, 130);
@@ -476,7 +477,7 @@
             // 
             // btnGithub
             // 
-            btnGithub.Location = new Point(713, 34);
+            btnGithub.Location = new Point(704, 24);
             btnGithub.Name = "btnGithub";
             btnGithub.Size = new Size(75, 23);
             btnGithub.TabIndex = 39;
@@ -486,7 +487,7 @@
             // 
             // btnHelp
             // 
-            btnHelp.Location = new Point(632, 34);
+            btnHelp.Location = new Point(623, 24);
             btnHelp.Name = "btnHelp";
             btnHelp.Size = new Size(75, 23);
             btnHelp.TabIndex = 40;

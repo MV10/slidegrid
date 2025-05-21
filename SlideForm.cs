@@ -109,7 +109,7 @@ public partial class SlideForm : Form
     {
         // when highlights-only mode is active, the current index is randomly selected,
         // then it skips forward until it finds a highlight entry; note this means you can't
-        // manually move forward and backward through the highlights
+        // manually move forward and backward in this mode
         if(highlightsOnly)
         {
             var nodupe = index;

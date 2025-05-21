@@ -21,5 +21,6 @@ The program supports JPG, PNG, GIF, and BMP files because Windows GDI handles th
 
 Pull-requests are welcome.
 
-![image](https://github.com/user-attachments/assets/866795f4-3017-44e7-90bf-2a09393272d1)
+![image](https://github.com/user-attachments/assets/aced740f-3129-4117-a84a-685fe782b4cf)
+
 

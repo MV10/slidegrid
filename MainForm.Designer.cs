@@ -78,6 +78,8 @@
             txtFreq = new TextBox();
             label10 = new Label();
             lblFullPathname = new Label();
+            cmbHiglights = new ComboBox();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)picPreview).BeginInit();
             SuspendLayout();
             // 
@@ -258,6 +260,7 @@
             // 
             // lstContent
             // 
+            lstContent.AllowDrop = true;
             lstContent.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstContent.FormattingEnabled = true;
             lstContent.ItemHeight = 14;
@@ -266,6 +269,8 @@
             lstContent.Size = new Size(190, 130);
             lstContent.TabIndex = 14;
             lstContent.SelectedIndexChanged += lstContent_SelectedIndexChanged;
+            lstContent.DragDrop += lstContent_DragDrop;
+            lstContent.DragEnter += lstContent_DragEnter;
             // 
             // lblContent
             // 
@@ -322,6 +327,7 @@
             // 
             // lstHighlight
             // 
+            lstHighlight.AllowDrop = true;
             lstHighlight.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstHighlight.FormattingEnabled = true;
             lstHighlight.ItemHeight = 14;
@@ -330,6 +336,8 @@
             lstHighlight.Size = new Size(190, 130);
             lstHighlight.TabIndex = 20;
             lstHighlight.SelectedIndexChanged += lstHighlight_SelectedIndexChanged;
+            lstHighlight.DragDrop += lstHighlight_DragDrop;
+            lstHighlight.DragEnter += lstHighlight_DragEnter;
             // 
             // lblHilight
             // 
@@ -417,7 +425,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(221, 399);
+            label6.Location = new Point(12, 399);
             label6.Name = "label6";
             label6.Size = new Size(128, 15);
             label6.TabIndex = 33;
@@ -425,7 +433,7 @@
             // 
             // txtShuffleTime
             // 
-            txtShuffleTime.Location = new Point(368, 393);
+            txtShuffleTime.Location = new Point(159, 393);
             txtShuffleTime.MaxLength = 5;
             txtShuffleTime.Name = "txtShuffleTime";
             txtShuffleTime.Size = new Size(43, 23);
@@ -439,7 +447,7 @@
             // 
             cmbStagger.FormattingEnabled = true;
             cmbStagger.Items.AddRange(new object[] { "(not shuffled)", "Staggered shuffle", "Syncrhonized shuffle" });
-            cmbStagger.Location = new Point(221, 425);
+            cmbStagger.Location = new Point(12, 425);
             cmbStagger.Name = "cmbStagger";
             cmbStagger.Size = new Size(190, 23);
             cmbStagger.TabIndex = 35;
@@ -564,11 +572,31 @@
             lblFullPathname.Size = new Size(776, 23);
             lblFullPathname.TabIndex = 47;
             // 
+            // cmbHiglights
+            // 
+            cmbHiglights.FormattingEnabled = true;
+            cmbHiglights.Items.AddRange(new object[] { "Same as Content (above)", "Always Shuffle" });
+            cmbHiglights.Location = new Point(221, 425);
+            cmbHiglights.Name = "cmbHiglights";
+            cmbHiglights.Size = new Size(190, 23);
+            cmbHiglights.TabIndex = 49;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(221, 407);
+            label11.Name = "label11";
+            label11.Size = new Size(107, 15);
+            label11.TabIndex = 48;
+            label11.Text = "Highlight playback";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 512);
+            Controls.Add(cmbHiglights);
+            Controls.Add(label11);
             Controls.Add(lblFullPathname);
             Controls.Add(label10);
             Controls.Add(txtFreq);
@@ -677,5 +705,7 @@
         private TextBox txtFreq;
         private Label label10;
         private Label lblFullPathname;
+        private ComboBox cmbHiglights;
+        private Label label11;
     }
 }

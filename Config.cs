@@ -15,16 +15,5 @@ internal class Config
     public double ShuffleTime { get; set; } = 10.0;
 
     public Config()
-    { 
-    }
-
-    public Config(string pathname)
-    {
-
-    }
-
-    public void Save()
-    {
-
-    }
+    { }
 }

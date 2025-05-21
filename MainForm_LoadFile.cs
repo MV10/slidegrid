@@ -102,6 +102,12 @@ public partial class MainForm
                                 cmbSequencing.SelectedIndex = seqval;
                                 continue;
 
+                            case "HIGHLIGHTMODE":
+                                if (!int.TryParse(settingvalue, out var hiliteval)) throw new Exception("Can't parse Playback HighlightMode setting");
+                                if (!Enum.IsDefined((HighlightPlayback)hiliteval)) throw new Exception("Invalid Playback HighlightMode setting");
+                                cmbSequencing.SelectedIndex = hiliteval;
+                                continue;
+
                             case "STAGGERMODE":
                                 if (!int.TryParse(settingvalue, out var stgval)) throw new Exception("Can't parse Playback StaggerMode setting");
                                 if (!Enum.IsDefined((PlaybackStaggerMode)stgval)) throw new Exception("Invalid Playback StaggerMode setting");

@@ -179,20 +179,31 @@ public partial class MainForm
             // add indexes to the playlist according to the sequence length 
             var index = random.Next(target.Count);
             var countdown = random.Next(1, seqlen + 1) + 2;
-            while(countdown > 0 && index < target.Count)
+
+            while (countdown > 0 && index < target.Count)
             {
-                var i = target[index] * multiplier;
+                // highlights might always be randomized (no sequencing)
+                if (multiplier == -1 && (HighlightPlayback)cmbHiglights.SelectedIndex == HighlightPlayback.AlwaysShuffle)
+                {
+                    index = random.Next(target.Count);
+                }
+
+                var storedIndex = target[index] * multiplier;
 
                 // special case for Higlights[0] since "negative zero" isn't possible
-                if (i == 0 && multiplier == -1) i = int.MinValue;
+                if (storedIndex == 0 && multiplier == -1) storedIndex = int.MinValue;
 
-                PlaybackSequence.Add(i);
+                PlaybackSequence.Add(storedIndex);
+
+                // by removing the selected entry, the next item "moves into" the [index] slot
+                // making it the next one added in the sequence in the next pass (unless randomized)
                 target.RemoveAt(index);
+
                 countdown--;
             }
 
             // highlights should never "run out"
-            if(Highlights.Count > 0 && highlightIDs.Count == 0)
+            if (Highlights.Count > 0 && highlightIDs.Count == 0)
             {
                 highlightIDs = Enumerable.Range(0, Highlights.Count).ToList();
             }

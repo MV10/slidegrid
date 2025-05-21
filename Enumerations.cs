@@ -35,3 +35,9 @@ internal enum PlaybackStaggerMode
     Synchronized = 1,
     Staggered = 2
 }
+
+internal enum HighlightPlayback
+{
+    SameAsContent = 0,
+    AlwaysShuffle = 1
+}

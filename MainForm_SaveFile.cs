@@ -25,6 +25,8 @@ public partial class MainForm
 #
 # SequenceMode:    0-NotSequenced, 1-ByFilename, 2-ByTimestamp
 #
+# HighlightMode:   0-SameAsContent, 1-AlwaysShuffle
+#
 # StggerMode:      0-NotShuffled, 1-Synchronized, 2-Staggered
 #
 # ShuffleTime:     seconds, 0.5 or greater (default is 10.0)
@@ -56,6 +58,7 @@ public partial class MainForm
         writer.WriteLine("[Playback]");
         writer.WriteLine($"RandomizeMode: {cmbRandomize.SelectedIndex}");
         writer.WriteLine($"SequenceMode: {cmbSequencing.SelectedIndex}");
+        writer.WriteLine($"HighlightMode: {cmbHiglights.SelectedIndex}");
         writer.WriteLine($"StaggerMode: {cmbStagger.SelectedIndex}");
         writer.WriteLine($"ShuffleTime: {txtShuffleTime.Text}");
         writer.WriteLine($"SequenceLength: {txtLength.Text}");

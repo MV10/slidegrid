@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 
 namespace slidegrid
@@ -168,20 +169,31 @@ namespace slidegrid
 
         private void btnEditor_Click(object sender, EventArgs e)
         {
-            // TODO external editor button
-            MessageBox.Show("TODO");
+            if(lstContent.SelectedItems.Count != 1 && lstHighlight.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("Please select a single image file.", "Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var pathname = (lstContent.SelectedItems.Count > 0) ? (string)lstContent.SelectedItems[0] : (string)lstHighlight.SelectedItems[0];
+
+            if(pathname.EndsWith("*"))
+            {
+                MessageBox.Show("Please select a single image file.", "Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo(pathname) { UseShellExecute = true });
         }
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            // TODO help button
-            MessageBox.Show("TODO");
+            Process.Start(new ProcessStartInfo("https://github.com/MV10/slidegrid/wiki/1-%E2%80%90-Welcome!") { UseShellExecute = true });
         }
 
         private void btnGithub_Click(object sender, EventArgs e)
         {
-            // TODO Github button
-            MessageBox.Show("TODO");
+            Process.Start(new ProcessStartInfo("https://github.com/MV10/slidegrid") { UseShellExecute = true });
         }
 
 

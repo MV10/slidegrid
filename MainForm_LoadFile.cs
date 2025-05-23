@@ -105,7 +105,7 @@ public partial class MainForm
                             case "HIGHLIGHTMODE":
                                 if (!int.TryParse(settingvalue, out var hiliteval)) throw new Exception("Can't parse Playback HighlightMode setting");
                                 if (!Enum.IsDefined((HighlightPlayback)hiliteval)) throw new Exception("Invalid Playback HighlightMode setting");
-                                cmbSequencing.SelectedIndex = hiliteval;
+                                cmbHiglights.SelectedIndex = hiliteval;
                                 continue;
 
                             case "STAGGERMODE":

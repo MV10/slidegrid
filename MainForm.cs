@@ -193,7 +193,7 @@ namespace slidegrid
 
         private void btnGithub_Click(object sender, EventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://github.com/MV10/slidegrid") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://github.com/MV10/slidegrid?tab=readme-ov-file#slidegrid") { UseShellExecute = true });
         }
 
 

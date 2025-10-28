@@ -1,6 +1,6 @@
 # slidegrid
 
-A simple multi-monitor or tiled-window slideshow program for events or parties.
+A simple multi-monitor or tiled-window slideshow Windows program for events or parties.
 
 Features:
 * Up to 10 display areas, either full-screen or defined regions

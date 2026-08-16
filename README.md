@@ -1,5 +1,7 @@
 # slidegrid
 
+> Replaced by my new cross-platform [`sgx`](https://github.com/MV10/sgx) program.
+
 A simple multi-monitor or tiled-window slideshow Windows program for events or parties.
 
 Features:
